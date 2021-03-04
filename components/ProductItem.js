@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { Button, Grid } from '@material-ui/core'
-import Link from 'next/Link'
+import Link from 'next/link'
 import { useEffect } from 'react'
 import { CartContext } from "./CartContext"
 import Image from 'next/image'
