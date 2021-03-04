@@ -2,6 +2,7 @@ import Head from 'next/head'
 import { Cart } from '../components/Cart';
 import ProductList from '../components/ProductList'
 import { server } from '../config'
+import productData from '../data/products.json'
 
 export default function Home({products}) {
   return (
@@ -18,8 +19,10 @@ export default function Home({products}) {
 }
 
 export const getStaticProps = async () => {
-  const res = await fetch(`${server}/resources/products.json`);
-  const products = await res.json();
+  //const res = await fetch(`${server}/resources/products.json`);
+  //const products = await res.json();
+  
+  const products = productData;
   return {
     props: {
       products

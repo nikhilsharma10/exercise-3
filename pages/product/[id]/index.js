@@ -3,6 +3,7 @@ import { Grid, Select, MenuItem } from '@material-ui/core'
 import Image from 'next/image'
 import parse from 'html-react-parser';
 import { server } from '../../../config'
+import productData from '../../../data/products.json'
 
 const product = ({productWithId}) => {
 
@@ -64,8 +65,9 @@ const product = ({productWithId}) => {
 }
 
 export const getStaticProps = async (context) => {
-    const res = await fetch(`${server}/resources/products.json`);
-    const product = await res.json();
+    //const res = await fetch(`${server}/resources/products.json`);
+    //const product = await res.json();
+    const product = productData;
     const productId = `${context.params.id}`;
     let productWithId;
 
@@ -83,8 +85,10 @@ export const getStaticProps = async (context) => {
 }
 
 export const getStaticPaths = async () => {
-    const res = await fetch(`${server}/resources/products.json`);
-    const products = await res.json();
+    //const res = await fetch(`${server}/resources/products.json`);
+    //const products = await res.json();
+
+    const products = productData;
 
     const ids = products['products'].map((product) => product.id)
     const paths = ids.map((id) => ({ params: { id: id.toString() } }))
