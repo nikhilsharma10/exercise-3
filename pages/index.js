@@ -9,6 +9,7 @@ export default function Home({products}) {
     <div>
       <Head>
         <title>My awesome shopping site</title>
+        <meta name="description" content="My awesome shopping site description"/>
       </Head>
       <div className="productSection">
         <Cart />

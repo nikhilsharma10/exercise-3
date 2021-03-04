@@ -116,3 +116,7 @@ a {
 .productPageVariantTitle {
   padding-right: 20px;
 }
+
+.removeItemElement .MuiButton-label {
+  font-weight: 600;
+}

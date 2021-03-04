@@ -5,14 +5,14 @@ import parse from 'html-react-parser';
 import { server } from '../../../config'
 import productData from '../../../data/products.json'
 
-const product = ({productWithId}) => {
+const product = ({productWithHandle}) => {
 
     const [available, setAvailable] = useState();
-    const [selectValue, setSelectValue] = useState(productWithId.variants[0].title);
+    const [selectValue, setSelectValue] = useState(productWithHandle.variants[0].title);
 
     const handleVariantChange = (event) => {
         const selectedVariant = event.target.value;
-        productWithId.variants.map((variant) => {
+        productWithHandle.variants.map((variant) => {
             if (variant.title == selectedVariant) {
                 setAvailable(variant.available);
                 setSelectValue(variant.title);
@@ -24,20 +24,21 @@ const product = ({productWithId}) => {
         <Grid container className="containerProductPage">
             <Grid item className="productPageImage">
                 <Image
-                    src={productWithId['images'][0].src}
+                    src={productWithHandle['images'][0].src}
+                    alt={productWithHandle.title + " Image"}
                     width={700}
                     height={700}/>
             </Grid>
             <Grid item className="productPageDetails">
                 <div className="productPageTitle">
-                    <h2>{productWithId.title}</h2>
+                    <h2>{productWithHandle.title}</h2>
                 </div>
                 <div className="productPageBody">
-                    {parse(productWithId.body_html)}
+                    {parse(productWithHandle.body_html)}
                 </div>
                 < br/>
                 <div className="productPageVendor">
-                    Vendor: {productWithId.vendor}
+                    Vendor: {productWithHandle.vendor}
                 </div>
                 < br/>
                 <div className="productPageVariants">
@@ -45,7 +46,7 @@ const product = ({productWithId}) => {
                     <Select onChange={handleVariantChange} 
                             value={selectValue} 
                             className="productPageDropdown">
-                        {productWithId.variants.map((variant) => (
+                        {productWithHandle.variants.map((variant) => (
                             <MenuItem key={variant.id} name={variant.id} value={variant.title}>{variant.title}</MenuItem>
                         ))}
                     </Select>
@@ -57,7 +58,7 @@ const product = ({productWithId}) => {
                 < br/>
                 < br/>
                 <div className="productPagePrice">
-                    Price: £{productWithId['variants'][0].price}
+                    Price: £{productWithHandle['variants'][0].price}
                 </div>
             </Grid>
         </Grid>
@@ -68,18 +69,18 @@ export const getStaticProps = async (context) => {
     //const res = await fetch(`${server}/resources/products.json`);
     //const product = await res.json();
     const product = productData;
-    const productId = `${context.params.id}`;
-    let productWithId;
+    const productHandle = `${context.params.handle}`;
+    let productWithHandle;
 
     Object.keys(product['products']).map((type) => {
-        if (product['products'][type].id == productId) {
-            productWithId = product['products'][type];
+        if (product['products'][type].handle == productHandle) {
+            productWithHandle = product['products'][type];
         }
     })
 
     return {
         props: {
-            productWithId,
+            productWithHandle,
         },
     }
 }
@@ -90,8 +91,11 @@ export const getStaticPaths = async () => {
 
     const products = productData;
 
-    const ids = products['products'].map((product) => product.id)
-    const paths = ids.map((id) => ({ params: { id: id.toString() } }))
+    const handles = products['products'].map((product) => product.handle)
+    const paths = handles.map((handle) => ({ params: { handle: handle.toString() } }))
+
+    //console.log(handles);
+    //console.log(paths);
 
   return {
     paths,

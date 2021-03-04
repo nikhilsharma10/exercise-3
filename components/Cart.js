@@ -61,8 +61,7 @@ export const Cart = () => {
                                         <div className="removeItemElement">
                                             <Button 
                                                 onClick={() => removeFromCart(JSON.parse(cartItems)[0].id)} 
-                                                variant="contained" 
-                                                color="secondary" >
+                                                variant="contained" >
                                                     REMOVE
                                             </Button>
                                         </div>

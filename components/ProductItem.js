@@ -43,10 +43,11 @@ const ProductItem = ({product}) => {
     return (
         <div className="productContainer">
             <Grid item className="productItem">
-                <Link href="/product/[id]" as={`/product/${product.id}`}>
+                <Link href="/product/[handle]" as={`/product/${product.handle}`}>
                     <a>
                         <Image
                             src={product['images'][0].src}
+                            alt={product.title + " Image"}
                             width={500}
                             height={500}/>
                         <div className="productTitle">{product.title}</div>
