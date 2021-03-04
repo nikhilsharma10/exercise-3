@@ -50,6 +50,7 @@ export const Cart = () => {
                                     <TableCell component="th" scope="row">
                                         <Image
                                             src={JSON.parse(cartItems)[0].image}
+                                            alt={JSON.parse(cartItems)[0].title + " Image"}
                                             width={50}
                                             height={50}/>
                                             < br/>
