@@ -26,8 +26,10 @@ const product = ({productWithHandle}) => {
                 <Image
                     src={productWithHandle['images'][0].src}
                     alt={productWithHandle.title + " Image"}
-                    width={700}
-                    height={700}/>
+                    objectFit="cotain"
+                    layout="fixed"
+                    width={productWithHandle['images'][0].width / 1.5}
+                    height={productWithHandle['images'][0].height / 1.5}/>
             </Grid>
             <Grid item className="productPageDetails">
                 <div className="productPageTitle">

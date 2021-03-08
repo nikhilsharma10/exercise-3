@@ -51,8 +51,10 @@ export const Cart = () => {
                                         <Image
                                             src={JSON.parse(cartItems)[0].image}
                                             alt={JSON.parse(cartItems)[0].title + " Image"}
-                                            width={50}
-                                            height={50}/>
+                                            objectFit="cotain"
+                                            layout="responsive"
+                                            width="auto"
+                                            height="auto"/>
                                             < br/>
                                         <div className="cartTitle">{JSON.parse(cartItems)[0].title}</div>
                                     </TableCell>

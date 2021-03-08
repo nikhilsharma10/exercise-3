@@ -48,8 +48,10 @@ const ProductItem = ({product}) => {
                         <Image
                             src={product['images'][0].src}
                             alt={product.title + " Image"}
-                            width={500}
-                            height={500}/>
+                            objectFit="cotain"
+                            layout="responsive"
+                            width="auto"
+                            height="auto"/>
                         <div className="productTitle">{product.title}</div>
                         <div className="productCost">£{product['variants'][0].price}</div>
                     </a>
